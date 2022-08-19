@@ -22,7 +22,7 @@ public class JlvApplication {
 
         corsConfiguration.setAllowCredentials(true);
 
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080/", "http://localhost:4200"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList("https://backendargentina.herokuapp.com/", "https://frond-endjorge.web.app"));
 
         corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
                 "Accept", "Authorization", "Origin, Accept", "X-Request-With",
