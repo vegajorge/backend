@@ -1,4 +1,4 @@
-
+    
 package com.proyecto.JLV.Entity;
 
 import java.util.List;

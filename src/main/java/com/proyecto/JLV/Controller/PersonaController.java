@@ -16,23 +16,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 
 @RestController
-@CrossOrigin(origins = "https://frond-endjorge.web.app")
+@RequestMapping("personas")
+@CrossOrigin(origins = "https://frond-endjorge.web.app/")
 public class PersonaController {
     @Autowired ImpPersonaService impPersonaService;
        
     
-    @DeleteMapping("/personas/borrar/{id}")
+    @DeleteMapping("/borrar/{id}")
     public String deletePersona(@PathVariable Long id){
         impPersonaService.deletePersona(id);
         return "Se borro la Persona";
     }
       
-    @GetMapping("/personas/lista/perfil")
+    @GetMapping("/lista/perfil")
     public Persona findPersona (){
         return impPersonaService.findPersona((long)1);
     }
@@ -54,7 +56,7 @@ public class PersonaController {
     }
    
 
-    @PostMapping("/personas/nueva")
+    @PostMapping("/nueva")
     public ResponseEntity<?> create(@RequestBody PersonaDto dtopers) {
         if (StringUtils.isBlank(dtopers.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -70,7 +72,7 @@ public class PersonaController {
     }
     
 
-    @PutMapping("/personas/editar/{id}")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody PersonaDto dtopers) {
    
         if (!impPersonaService.existsById(id)) {
