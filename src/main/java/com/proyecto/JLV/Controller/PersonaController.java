@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 @RestController
 @RequestMapping("/personas/")
 @CrossOrigin(origins = "https://frond-endjorge.web.app")
@@ -46,7 +45,7 @@ public class PersonaController {
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @GetMapping("/detail/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") int id) {
         if (!impPersonaService.existsById(id)) {
@@ -55,6 +54,7 @@ public class PersonaController {
         Persona persona = impPersonaService.getOne(id).get();
         return new ResponseEntity(persona, HttpStatus.OK);
     }
+    
    @PreAuthorize("hasRole('ADMIN')")
    @PostMapping("/nueva")
     public String createPersona(@RequestBody Persona persona) {
@@ -62,7 +62,7 @@ public class PersonaController {
         return "El usuario fue creado correctamente";
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody PersonaDto dtopers) {
    
