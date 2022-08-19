@@ -55,21 +55,11 @@ public class PersonaController {
         Persona persona = impPersonaService.getOne(id).get();
         return new ResponseEntity(persona, HttpStatus.OK);
     }
-   
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/nueva")
-    public ResponseEntity<?> create(@RequestBody PersonaDto dtopers) {
-        if (StringUtils.isBlank(dtopers.getNombre())) {
-            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        }
-        if (impPersonaService.existsByNombre(dtopers.getNombre())) {
-            return new ResponseEntity(new Mensaje("Esa persona existe"), HttpStatus.BAD_REQUEST);
-        }
-
-        Persona persona = new Persona(dtopers.getNombre(), dtopers.getApellido(), dtopers.getUbicacion(), dtopers.getProfecion(), dtopers.getDescripcion(), dtopers.getImagen());
+   @PreAuthorize("hasRole('ADMIN')")
+   @PostMapping("/nueva")
+    public String createPersona(@RequestBody Persona persona) {
         impPersonaService.save(persona);
-
-        return new ResponseEntity(new Mensaje("Persona agregada!"), HttpStatus.OK);
+        return "El usuario fue creado correctamente";
     }
     
     @PreAuthorize("hasRole('ADMIN')")
