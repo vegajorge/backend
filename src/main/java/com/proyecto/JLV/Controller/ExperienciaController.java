@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 
 @RestController
 @RequestMapping("/experiencia/")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://frond-endjorge.web.app")
 
 public class ExperienciaController  {
     @Autowired
